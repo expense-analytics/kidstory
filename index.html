@@ -39,6 +39,12 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
+            padding: 20px;
+            padding-bottom: 80px;
+            overflow-y: auto;
+            background-image: url('https://i.postimg.cc/fykGcmQy/Colorful-Illustrative-Kids-Book-Cover.png');
+            background-size: cover;
+            background-position: center;
         }
 
         .box, .story-card {
@@ -182,6 +188,7 @@
         <div class="story-content" id="storyContent">
             <p>This is the readable story content. Users can use the buttons above to zoom in or out and adjust the font size as they prefer.</p>
         </div>
+        <button class="fab" onclick="addNewItem()">+</button>
     </section>
 
     <footer class="footer">
@@ -190,8 +197,6 @@
         <button class="footer-button" onclick="navigate('profile', this)">Profile</button>
         <button class="footer-button" onclick="navigate('settings', this)">Settings</button>
     </footer>
-
-    <button class="fab" onclick="addNewItem()">+</button>
 
     <script>
         function showMainContent() {
