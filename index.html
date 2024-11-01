@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile App UI</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.3s, color 0.3s;
+            background-color: #FFFAF0;
+        }
+
+        .header {
+            padding: 20px;
+            text-align: center;
+            background-color: #FF6F61;
+            color: white;
+            border-bottom: 5px solid #FF8C42;
+        }
+
+        .main-content, .story-section, .story-page {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .box, .story-card {
+            background-color: #FFD700;
+            border: 2px solid #FF4500;
+            border-radius: 8px;
+            padding: 20px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            color: #4B0082;
+            margin-top: 20px;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            background-color: #FF6F61;
+        }
+
+        .footer-button {
+            background-color: #20B2AA;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            flex: 1;
+            margin: 0 5px;
+            transition: background-color 0.3s;
+            border-radius: 5px;
+        }
+
+        .footer-button.active {
+            background-color: #008B8B;
+        }
+
+        .fab {
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            background-color: #FF1493;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .story-header {
+            display: flex;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #FF8C42;
+        }
+
+        .back-button {
+            background-color: #FF6F61;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 15px;
+        }
+
+        .zoom-buttons {
+            margin-left: auto;
+            display: flex;
+        }
+
+        .zoom-button {
+            background-color: #20B2AA;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 5px;
+        }
+
+        .story-content {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #4B0082;
+        }
+    </style>
+</head>
+<body>    
+    <!-- Main Content with Story Boxes -->
+    <main class="main-content" id="mainContent">
+        <div class="box" onclick="showStorySection('Story Section 1')">Story Section 1</div>
+        <div class="box" onclick="showStorySection('Story Section 2')">Story Section 2</div>
+        <div class="box" onclick="showStorySection('Story Section 3')">Story Section 3</div>
+        <div class="box" onclick="showStorySection('Story Section 4')">Story Section 4</div>
+        <div class="box" onclick="showStorySection('Story Section 5')">Story Section 5</div>
+        <div class="box" onclick="showStorySection('Story Section 6')">Story Section 6</div>
+        <div class="box" onclick="showStorySection('Story Section 7')">Story Section 7</div>
+        <div class="box" onclick="showStorySection('Story Section 8')">Story Section 8</div>
+        <div class="box" onclick="showStorySection('Story Section 9')">Story Section 9</div>
+        <div class="box" onclick="showStorySection('Story Section 10')">Story Section 10</div>
+        <div class="box" onclick="showStorySection('Story Section 11')">Story Section 11</div>
+        <div class="box" onclick="showStorySection('Story Section 12')">Story Section 12</div>
+        <div class="box" onclick="showStorySection('Story Section 13')">Story Section 13</div>
+        <div class="box" onclick="showStorySection('Story Section 14')">Story Section 14</div>
+        <div class="box" onclick="showStorySection('Story Section 15')">Story Section 15</div>
+        <div class="box" onclick="showStorySection('Story Section 16')">Story Section 16</div>
+    </main>
+    
+    <!-- Story Section with Story Banners -->
+    <section class="story-section" id="storySection">
+        <div class="story-header">
+            <button class="back-button" onclick="showMainContent()">Back</button>
+            <h2 id="storySectionTitle">Story Section</h2>
+        </div>
+        <div class="story-card" onclick="openStoryPage('Story 1')">Story 1</div>
+        <div class="story-card" onclick="openStoryPage('Story 2')">Story 2</div>
+        <div class="story-card" onclick="openStoryPage('Story 3')">Story 3</div>
+    </section>
+
+    <!-- Story Page with Full Readable Story -->
+    <section class="story-page" id="storyPage">
+        <div class="story-header">
+            <button class="back-button" onclick="showStorySection()">Back</button>
+            <h2 id="storyPageTitle">Story Title</h2>
+            <div class="zoom-buttons">
+                <button class="zoom-button" onclick="zoomIn()">A+</button>
+                <button class="zoom-button" onclick="zoomOut()">A-</button>
+            </div>
+        </div>
+        <div class="story-content" id="storyContent">
+            <p>This is the readable story content. Users can use the buttons above to zoom in or out and adjust the font size as they prefer.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <button class="footer-button" onclick="navigate('favorites', this)">Favorites</button>
+        <button class="footer-button" onclick="navigate('wishlist', this)">Wishlist</button>
+        <button class="footer-button" onclick="navigate('profile', this)">Profile</button>
+        <button class="footer-button" onclick="navigate('settings', this)">Settings</button>
+    </footer>
+
+    <button class="fab" onclick="addNewItem()">+</button>
+
+    <script>
+        function showMainContent() {
+            document.getElementById('mainContent').style.display = 'grid';
+            document.getElementById('storySection').style.display = 'none';
+            document.getElementById('storyPage').style.display = 'none';
+        }
+
+        function showStorySection(sectionTitle) {
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('storySection').style.display = 'block';
+            document.getElementById('storyPage').style.display = 'none';
+            document.getElementById('storySectionTitle').textContent = sectionTitle;
+        }
+
+        function openStoryPage(storyTitle) {
+            document.getElementById('storyPage').style.display = 'block';
+            document.getElementById('storySection').style.display = 'none';
+            document.getElementById('storyPageTitle').textContent = storyTitle;
+        }
+
+        function zoomIn() {
+            const content = document.getElementById('storyContent');
+            let currentSize = parseFloat(window.getComputedStyle(content).fontSize);
+            content.style.fontSize = (currentSize + 2) + "px";
+        }
+
+        function zoomOut() {
+            const content = document.getElementById('storyContent');
+            let currentSize = parseFloat(window.getComputedStyle(content).fontSize);
+            content.style.fontSize = (currentSize - 2) + "px";
+        }
+
+        function addNewItem() {
+            alert("Adding new item!");
+        }
+
+        function navigate(section, button) {
+            const buttons = document.querySelectorAll('.footer-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            alert("Navigating to " + section);
+        }
+    </script>
+</body>
+</html>
